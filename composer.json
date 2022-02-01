@@ -1,0 +1,45 @@
+{
+    "name": "mikkycody/laravel-woven",
+    "description": "A Laravel Package for integrating with Woven Finance hassle-free",
+    "autoload": {
+        "files": [
+            "src/Helpers/helpers.php"
+        ],
+        "psr-4": {
+            "Mikkycody\\Woven\\": "src/"
+        }
+    },  
+    "autoload-dev": {
+        "psr-4": {
+        "Mikkycody\\Woven\\Test\\": "Tests"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mikkycody",
+            "email": "horluwatowbeey@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mikkycody\\Woven\\WovenServiceProvider"
+            ],
+            "aliases": {
+                "Woven": "Mikkycody\\Woven\\Facades\\Woven"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8.4|^9.0",
+        "scrutinizer/ocular": "~1.1",
+        "php-coveralls/php-coveralls": "^2.0",
+        "mockery/mockery": "^1.3"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}

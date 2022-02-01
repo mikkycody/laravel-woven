@@ -464,6 +464,7 @@ Contributions are highly welcome, Please feel free to fork this package and cont
 Don't forget to [follow me on twitter](https://twitter.com/mikkycody)!
 
 Happy coding!
+
 Michael George.
 
 ## License

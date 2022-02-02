@@ -1,6 +1,26 @@
 {
     "name": "mikkycody/laravel-woven",
     "description": "A Laravel Package for integrating with Woven Finance hassle-free",
+     "keywords": [
+        "php",
+        "laravel",
+        "laravel 6",
+        "laravel 7",
+        "laravel 8",
+        "package",
+        "integration",
+        "transaction",
+        "Open Source",
+        "payments",
+        "payment gateway",
+        "github",
+        "virtual",
+        "bank",
+        "mandate",
+        "woven finance",
+        "woven.finance",
+        "mikkycody"
+  ],
     "autoload": {
         "files": [
             "src/Helpers/helpers.php"
@@ -31,7 +51,7 @@
             }
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {},
     "require-dev": {
         "phpunit/phpunit": "^8.4|^9.0",

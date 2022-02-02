@@ -31,7 +31,7 @@ Also, register the Facade like so:
 ```php
 'aliases' => [
     ...
-    'Woven' => Mikkycody\Woven\WovenServiceProvider::class,
+    'Woven' => Mikkycody\Woven\Facades\Woven::class,
     ...
 ]
 ```
@@ -75,9 +75,9 @@ WOVEN_SECRET=vb_ts_XXXXXXXXXXXXXXX
 
 ```
 
-Let me explain the fluent methods this package provides a bit here.
+Let me explain the methods this package provides a bit here.
 
-NB: All methods can be accessed with the helper function as so : woven(), e.g woven()->generateRef() .
+NB: All methods can be accessed with the helper function as so : woven(), e.g woven()->generateRef() which is equivalent to Woven::generateRef().
 
 ```php
 

@@ -80,14 +80,15 @@ Let me explain the fluent methods this package provides a bit here.
 NB: All methods can be accessed with the helper function as so : woven(), e.g woven()->generateRef() .
 
 ```php
-/**
- * This method generates a unique reference
- * @param array $prefix (Optional)
- */
+
 $prefix = "WOV";
 $vnuban = 'XXXXXXXXXX';
 $mandate_reference = 'XXXXXXXXXXX';
 
+/**
+ * This method generates a unique reference
+ * @param array $prefix (Optional)
+ */
 Woven::generateRef($prefix);
 
 /**
@@ -464,6 +465,7 @@ Contributions are highly welcome, Please feel free to fork this package and cont
 Don't forget to [follow me on twitter](https://twitter.com/mikkycody)!
 
 Happy coding!
+
 Michael George.
 
 ## License

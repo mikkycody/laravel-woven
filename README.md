@@ -24,7 +24,7 @@ Once the package is installed, you need to register the service provider. Open u
 
 > If you use **Laravel >= 5.5** you can skip this step
 
--   `Mikkycody\Woven\WovenServiceProvider::class`
+- `Mikkycody\Woven\WovenServiceProvider::class`
 
 Also, register the Facade like so:
 
@@ -73,6 +73,44 @@ Open your .env file and add your public key, secret key, merchant email and paym
 WOVEN_KEY=vb_tk_XXXXXXXXXXXXXXX
 WOVEN_SECRET=vb_ts_XXXXXXXXXXXXXXX
 
+```
+
+Sample controller usage:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Woven;
+
+class WovenController extends Controller
+{
+   public function createVirtualAccount(){
+      $data = [
+         "customer_reference" => "Kaela_Carroll",
+         "name" => "Joey Hegmann",
+         "email" => "jones_adelaide@mail.com",
+         "mobile_number" => "08012345678",
+         "expires_on" => "2021-11-01",
+         "use_frequency" => "5",
+         "min_amount" => 100,
+         "max_amount" => 12000,
+         "callback_url" => "https://yourcallbackurl.com",
+         "destination_nuban" => "",
+         "meta_data" => [
+               "somedatakey" => "somedatavalue"
+            ]
+      ];
+
+      $response = Woven::createNewCustomerAccount($data);
+
+      // You can now perform any action with the response , store needed details to your database or redirect 
+   }
+}
+?>
 ```
 
 Let me explain the methods this package provides a bit here.
@@ -158,16 +196,16 @@ Woven::getAccount($vnuban)
  * @param array $data
  */
 $data = [
-   "expires_on" => "2021-11-01", 
-   "use_frequency" => "5", 
-   "min_amount" => 2000, 
-   "max_amount" => 120000, 
-   "callback_url" => "http://callbackurl.com", 
+   "expires_on" => "2021-11-01",
+   "use_frequency" => "5",
+   "min_amount" => 2000,
+   "max_amount" => 120000,
+   "callback_url" => "http://callbackurl.com",
    "meta_data" => [
-         "somedatakey" => "somedatavalue" 
-      ], 
-   "destination_nuban" => "0427521260" 
-]; 
+         "somedatakey" => "somedatavalue"
+      ],
+   "destination_nuban" => "0427521260"
+];
 Woven::updateAccount($vnuban, $data)
 
 /**
@@ -195,23 +233,23 @@ Woven::fetchTransaction($unique_reference)
  * @param array $data
  */
 $data = [
-   "customer_name" => "Adelaide Jones", 
-   "customer_email" => "yadeka@gmail.com", 
-   "customer_mobile" => "08012345678", 
-   "customer_reference" => "CUST001", 
-   "account_number" => "0012345679", 
-   "bank_code" => "044", 
-   "amount" => 100, 
-   "currency" => "NGN", 
-   "call_back_url" => "merchant.notify.com", 
-   "mandate_type" => "direct", 
-   "narration" => "My Lunch order and PS5", 
-   "frequency" => "weekly", 
-   "start_date" => "2020-11-30", 
-   "end_date" => "2020-12-1", 
+   "customer_name" => "Adelaide Jones",
+   "customer_email" => "yadeka@gmail.com",
+   "customer_mobile" => "08012345678",
+   "customer_reference" => "CUST001",
+   "account_number" => "0012345679",
+   "bank_code" => "044",
+   "amount" => 100,
+   "currency" => "NGN",
+   "call_back_url" => "merchant.notify.com",
+   "mandate_type" => "direct",
+   "narration" => "My Lunch order and PS5",
+   "frequency" => "weekly",
+   "start_date" => "2020-11-30",
+   "end_date" => "2020-12-1",
    "meta_data" => [
-         "product_id" => "AB001" 
-      ] 
+         "product_id" => "AB001"
+      ]
 ];
 Woven::createMandate($data)
 
@@ -260,10 +298,10 @@ Woven::cancelMandate($mandate_reference
  */
 $customer_reference = 'XXXXXXXX';
 $data = [
-   "customer_phone_number" => "111111111", 
-   "customer_email" => "a@b.com", 
-   "customer_name" => "ab" 
-]; 
+   "customer_phone_number" => "111111111",
+   "customer_email" => "a@b.com",
+   "customer_name" => "ab"
+];
 Woven::editCustomer($customer_reference, $data)
 
 /**
@@ -271,9 +309,9 @@ Woven::editCustomer($customer_reference, $data)
  * @param array $data
  */
 $data = [
-   "account_name" => "Salary Account", 
-   "account_preference" => "SECONDARY" 
-]; 
+   "account_name" => "Salary Account",
+   "account_preference" => "SECONDARY"
+];
 Woven::reateReservedAccount($data)
 
 /**
@@ -288,23 +326,23 @@ Woven::fetchReservedAccount($vnuban)
  */
 
 $data = [
-   "source_account" => "9100887063", 
-   "PIN" => "3344", 
-   "beneficiary_account_name" => "Adelaide Jones", 
-   "beneficiary_nuban" => "***********", 
-   "beneficiary_bank_code" => "***********", 
-   "bank_code_scheme" => "NIP", 
-   "currency_code" => "NGN", 
-   "narration" => "Nov 2020", 
-   "amount" => 1000, 
-   "reference" => "4252673830", 
-   "sender_name" => "ETIM EZE", 
-   "callback_url" => "******", 
+   "source_account" => "9100887063",
+   "PIN" => "3344",
+   "beneficiary_account_name" => "Adelaide Jones",
+   "beneficiary_nuban" => "***********",
+   "beneficiary_bank_code" => "***********",
+   "bank_code_scheme" => "NIP",
+   "currency_code" => "NGN",
+   "narration" => "Nov 2020",
+   "amount" => 1000,
+   "reference" => "4252673830",
+   "sender_name" => "ETIM EZE",
+   "callback_url" => "******",
    "meta_data" => [
-         "beneficiary_phone" => "08033212933", 
-         "beneficiary_email" => "johndoe@testme.com" 
-      ] 
-]; 
+         "beneficiary_phone" => "08033212933",
+         "beneficiary_email" => "johndoe@testme.com"
+      ]
+];
 Woven::singlePayout($data)
 
 /**
@@ -312,44 +350,44 @@ Woven::singlePayout($data)
  * @param array $data
  */
 $data =  [
-   "source_account" => "9100887063", 
-   "PIN" => "3344", 
-   "type" => "varied_amount", 
+   "source_account" => "9100887063",
+   "PIN" => "3344",
+   "type" => "varied_amount",
    "payout_list" => [
          [
-            "beneficiary_account_name" => "Adeleye Jones", 
-            "beneficiary_nuban" => "**********", 
-            "beneficiary_bank_code" => "******", 
-            "bank_code_scheme" => "NIP", 
-            "amount" => 1500, 
-            "currency_code" => "NGN", 
-            "narration" => "End of the month bonus", 
-            "reference" => "436909217984", 
-            "sender_name" => "ETIM EZE", 
-            "callback_url" => "******", 
+            "beneficiary_account_name" => "Adeleye Jones",
+            "beneficiary_nuban" => "**********",
+            "beneficiary_bank_code" => "******",
+            "bank_code_scheme" => "NIP",
+            "amount" => 1500,
+            "currency_code" => "NGN",
+            "narration" => "End of the month bonus",
+            "reference" => "436909217984",
+            "sender_name" => "ETIM EZE",
+            "callback_url" => "******",
             "meta_data" => [
-               "beneficiary_phone" => "08033212933", 
-               "beneficiary_email" => "johndoe@testme.com" 
-            ] 
-         ], 
+               "beneficiary_phone" => "08033212933",
+               "beneficiary_email" => "johndoe@testme.com"
+            ]
+         ],
          [
-                  "beneficiary_account_name" => "Adeleye Jones", 
-                  "beneficiary_nuban" => "**********", 
-                  "beneficiary_bank_code" => "******", 
-                  "bank_code_scheme" => "NIP", 
-                  "amount" => 1500, 
-                  "currency_code" => "NGN", 
-                  "narration" => "End of the month bonus", 
-                  "reference" => "436909217984", 
-                  "sender_name" => "ETIM EZE", 
-                  "callback_url" => "******", 
+                  "beneficiary_account_name" => "Adeleye Jones",
+                  "beneficiary_nuban" => "**********",
+                  "beneficiary_bank_code" => "******",
+                  "bank_code_scheme" => "NIP",
+                  "amount" => 1500,
+                  "currency_code" => "NGN",
+                  "narration" => "End of the month bonus",
+                  "reference" => "436909217984",
+                  "sender_name" => "ETIM EZE",
+                  "callback_url" => "******",
                   "meta_data" => [
-                     "beneficiary_phone" => "08033212933", 
-                     "beneficiary_email" => "johndoe@testme.com" 
-                  ] 
-               ] 
-      ] 
-]; 
+                     "beneficiary_phone" => "08033212933",
+                     "beneficiary_email" => "johndoe@testme.com"
+                  ]
+               ]
+      ]
+];
 Woven::bulkPayout($data)
 
 /**
@@ -357,24 +395,24 @@ Woven::bulkPayout($data)
  * @param array $data
  */
 $data =[
-   "source_account" => "9100887063", 
-   "PIN" => "3344", 
-   "beneficiary_account_name" => "Adelaide Jones", 
-   "beneficiary_nuban" => "***********", 
-   "beneficiary_bank_code" => "******", 
-   "bank_code_scheme" => "NIP", 
-   "currency_code" => "NGN", 
-   "narration" => "monthly dues", 
-   "amount" => 1000, 
-   "reference" => "4252673830", 
-   "sender_name" => "ETIM EZE", 
-   "payout_date_time" => "2021-08-05 12:30:00", 
-   "callback_url" => "******", 
+   "source_account" => "9100887063",
+   "PIN" => "3344",
+   "beneficiary_account_name" => "Adelaide Jones",
+   "beneficiary_nuban" => "***********",
+   "beneficiary_bank_code" => "******",
+   "bank_code_scheme" => "NIP",
+   "currency_code" => "NGN",
+   "narration" => "monthly dues",
+   "amount" => 1000,
+   "reference" => "4252673830",
+   "sender_name" => "ETIM EZE",
+   "payout_date_time" => "2021-08-05 12:30:00",
+   "callback_url" => "******",
    "meta_data" => [
-         "beneficiary_phone" => "080833212933", 
-         "beneficiary_email" => "johndoe@testme.com" 
-      ] 
-]; 
+         "beneficiary_phone" => "080833212933",
+         "beneficiary_email" => "johndoe@testme.com"
+      ]
+];
 Woven::schedulePayout($data)
 
 /**
@@ -429,8 +467,8 @@ Woven::fetchSettlementTransactions($settlement_reference, $query)
  * @param array $data
  */
 $data = [
-   "account_number" => "100123123", 
-   "bank_code" => "044" 
+   "account_number" => "100123123",
+   "bank_code" => "044"
 ];
 Woven::resolveBankAccount($data)
 
@@ -440,10 +478,10 @@ Woven::resolveBankAccount($data)
  * @param array $data
  */
 $data = [
-   "account_number" => "100123123", 
-   "bank_code" => "044", 
-   "bvn" => "001213132112" 
-]; 
+   "account_number" => "100123123",
+   "bank_code" => "044",
+   "bvn" => "001213132112"
+];
 Woven::resolveBvnMatch($data)
 
 /**
@@ -451,10 +489,10 @@ Woven::resolveBvnMatch($data)
  * @param array $data
  */
 $data = [
-   "account_number" => "100123123", 
-   "bank_code" => "044", 
-   "kyc_information" => true 
-]; 
+   "account_number" => "100123123",
+   "bank_code" => "044",
+   "kyc_information" => true
+];
 Woven::retrieveKyc($data)
 ```
 

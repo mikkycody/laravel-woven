@@ -229,7 +229,7 @@ class Woven
      */
     public function singlePayout($data)
     {
-        return $this->callApi('/v2/api/payouts/request?command=initiate', 'post', $data);
+        return $this->callApi('/v2/api/payouts/request', 'post', $data, ['command' => 'initiate']);
     }
 
     /**
@@ -247,7 +247,7 @@ class Woven
      */
     public function schedulePayout($data)
     {
-        return $this->callApi('/v2/api/payouts/request?command=scheduled', 'post', $data);
+        return $this->callApi('/v2/api/payouts/request', 'post', $data, ['command' => 'scheduled']);
     }
 
     /**

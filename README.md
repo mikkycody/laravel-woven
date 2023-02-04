@@ -500,8 +500,6 @@ Woven::retrieveKyc($data)
 
 Contributions are highly welcome, Please feel free to fork this package and contribute by submitting a pull request to improve the functionalities.
 
-Don't forget to [follow me on twitter](https://twitter.com/mikkycody)!
-
 Happy coding!
 
 Michael George.
